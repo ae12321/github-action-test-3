@@ -1,21 +1,30 @@
 name: test and deploy
 on: [push]
 jobs:
-  get-code:
-    runs-on: ubuntu-latest
-    steps: 
-      - name: get code
-        uses: actions/checkout@v4
-      - name: npm install 
-        run : npm ci
-
   execute-lint:
-    needs: get-code
     runs-on: ubuntu-latest
     steps:
       - name: get code
         uses: actions/checkout@v4
       - name: npm install 
         run : npm ci
-      - name: lint
+      - name: go lint
         run: npm run lint
+  execute-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v4
+      - name: npm install 
+        run : npm ci
+      - name: go test
+        run: npm test
+  execute-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v4
+      - name: npm install 
+        run : npm ci
+      - name: go build
+        run: npm run build
