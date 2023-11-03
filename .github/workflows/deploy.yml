@@ -13,17 +13,9 @@ jobs:
     needs: get-code
     runs-on: ubuntu-latest
     steps:
+      - name: get code
+        uses: actions/checkout@v4
+      - name: npm install 
+        run : npm ci
       - name: lint
         run: npm run lint
-  execute-test:
-    needs: get-code
-    runs-on: ubuntu-latest
-    steps:
-      - name: test
-        run: npm test
-  execute-build:
-    needs: get-code
-    runs-on: ubuntu-latest
-    steps:
-      - name: build
-        run: npm run build
