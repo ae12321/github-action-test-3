@@ -1,0 +1,12 @@
+name: issue trigger
+on:
+    issues: 
+        types: opened
+jobs:
+    echo-output:
+        runs-on: ubuntu-latest
+        steps:
+            - name: echo issue
+              run: echo "${{ toJson(github) }}"
+
+              
